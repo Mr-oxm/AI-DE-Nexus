@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
+/* Always dark by default */
+html {
+  color-scheme: dark;
+}
+
+/* Force Tailwind v4 to output CSS variables instead of hex for the zinc scale, so we can flip them via CSS */
+@theme {
+  --color-zinc-50: var(--zinc-50);
+  --color-zinc-100: var(--zinc-100);
+  --color-zinc-200: var(--zinc-200);
+  --color-zinc-300: var(--zinc-300);
+  --color-zinc-400: var(--zinc-400);
+  --color-zinc-500: var(--zinc-500);
+  --color-zinc-600: var(--zinc-600);
+  --color-zinc-700: var(--zinc-700);
+  --color-zinc-800: var(--zinc-800);
+  --color-zinc-900: var(--zinc-900);
+  --color-zinc-950: var(--zinc-950);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Default Dark Mode Zinc Scale */
+  --zinc-50: oklch(98.5% 0 0);
+  --zinc-100: oklch(96.7% 0.001 286.375);
+  --zinc-200: oklch(92% 0.004 286.32);
+  --zinc-300: oklch(87.1% 0.006 286.286);
+  --zinc-400: oklch(70.5% 0.015 286.067);
+  --zinc-500: oklch(55.2% 0.016 285.938);
+  --zinc-600: oklch(44.2% 0.017 285.786);
+  --zinc-700: oklch(37% 0.013 285.805);
+  --zinc-800: oklch(27.4% 0.006 286.033);
+  --zinc-900: oklch(21% 0.006 285.885);
+  --zinc-950: oklch(14.2% 0.004 285.823);
+
+  /* Core palette - Vercel/shadcn dark */
+  --bg-base: #09090b;
+  --bg-subtle: #0f0f12;
+  --bg-card: #111116;
+  --bg-hover: #18181e;
+  --bg-elevated: #1c1c24;
+
+  --border: #27272a;
+  --border-strong: #3f3f46;
+
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+
+  --accent: #3b82f6;
+  --accent-muted: rgba(59, 130, 246, 0.15);
+  --accent-border: rgba(59, 130, 246, 0.25);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Light mode ────────────────────────────────────────────────────
+ Flipping explicit custom properties and the zinc scale variables.
+ ──────────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Invert the Custom Zinc properties (50↔950, 100↔900, etc.) */
+  --zinc-50: oklch(14.2% 0.004 285.823);
+  --zinc-100: oklch(21% 0.006 285.885);
+  --zinc-200: oklch(27.4% 0.006 286.033);
+  --zinc-300: oklch(37% 0.013 285.805);
+  --zinc-400: oklch(44.2% 0.017 285.786);
+  --zinc-500: oklch(55.2% 0.016 285.938);
+  --zinc-600: oklch(70.5% 0.015 286.067);
+  --zinc-700: oklch(87.1% 0.006 286.286);
+  --zinc-800: oklch(92% 0.004 286.32);
+  --zinc-900: oklch(96.7% 0.001 286.375);
+  --zinc-950: oklch(98.5% 0 0);
+
+  /* Custom property overrides */
+  --bg-base: #f4f4f5;
+  --bg-subtle: #e4e4e7;
+  --bg-card: #fafafa;
+  --bg-hover: #d4d4d8;
+  --bg-elevated: #ffffff;
+  --border: #d4d4d8;
+  --border-strong: #a1a1aa;
+  --text-primary: #09090b;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="light"] body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Custom scrollbars - thin & minimal */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.25);
+  color: #fff;
+}
+
+/* Subtle page edges - NO neon glow */
+main {
+  min-height: 100vh;
+}
+
+/* Code font */
+code,
+pre,
+.font-mono {
+  font-family: var(--font-geist-mono), 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
 }

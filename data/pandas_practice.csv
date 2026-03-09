@@ -1,0 +1,62 @@
+order_id,customer_id,customer_name,email,city,country,department,product,category,quantity,unit_price,discount,order_date,ship_date,status,rating
+1001,C001,Alice Johnson,alice@gmail.com,New York,USA,Sales,Laptop,Electronics,2,999.99,0.1,2023-01-05,2023-01-08,completed,5
+1002,C002,Bob Smith,bob@yahoo.com,London,UK,HR,Desk Chair,Furniture,1,249.50,0.0,2023-01-07,2023-01-10,completed,4
+1003,C003,Carlos Diaz,carlos@gmail.com,Madrid,Spain,Engineering,Monitor,Electronics,3,399.00,0.15,2023-01-10,,pending,
+1004,C001,Alice Johnson,alice@gmail.com,New York,USA,Sales,Keyboard,Electronics,1,79.99,0.0,2023-01-12,2023-01-14,completed,5
+1005,C004,Diana Lee,diana@gmail.com,Paris,France,Marketing,Notebook,Stationery,10,4.99,0.05,2023-01-15,2023-01-17,completed,3
+1006,C005,Ethan Brown,ethan@outlook.com,New York,USA,Engineering,Webcam,Electronics,2,59.99,0.0,2023-01-18,2023-01-20,completed,4
+1007,C006,Fatima Al-Hassan,fatima@gmail.com,Dubai,UAE,Finance,Laptop,Electronics,1,1199.99,0.2,2023-01-20,,cancelled,
+1008,C002,Bob Smith,bob@yahoo.com,London,UK,HR,Standing Desk,Furniture,1,599.00,0.1,2023-01-22,2023-01-28,completed,5
+1009,C007,George Wu,george@gmail.com,Shanghai,China,Sales,Headphones,Electronics,4,149.99,0.0,2023-02-01,2023-02-04,completed,4
+1010,C008,Hannah Kim,hannah@naver.com,Seoul,South Korea,Marketing,Laptop,Electronics,2,899.99,0.05,2023-02-03,2023-02-06,completed,5
+1011,C003,Carlos Diaz,carlos@gmail.com,Madrid,Spain,Engineering,USB Hub,Electronics,5,29.99,0.0,2023-02-05,2023-02-07,completed,3
+1012,C009,Ivan Petrov,ivan@mail.ru,Moscow,Russia,Finance,Printer,Electronics,1,349.00,0.0,2023-02-08,,pending,
+1013,C010,Julia Roberts,julia@gmail.com,Los Angeles,USA,Sales,Webcam,Electronics,3,59.99,0.1,2023-02-10,2023-02-12,completed,4
+1014,C001,Alice Johnson,alice@gmail.com,New York,USA,Sales,Monitor,Electronics,1,399.00,0.0,2023-02-14,2023-02-17,completed,5
+1015,C011,Kevin Osei,kevin@gmail.com,Accra,Ghana,Engineering,Keyboard,Electronics,2,79.99,0.05,2023-02-16,2023-02-19,completed,4
+1016,C004,Diana Lee,diana@gmail.com,Paris,France,Marketing,Desk Lamp,Furniture,3,39.99,0.0,2023-02-18,2023-02-20,completed,3
+1017,C012,Laura Müller,laura@web.de,Berlin,Germany,HR,Office Chair,Furniture,4,189.00,0.1,2023-02-20,2023-02-25,completed,5
+1018,C005,Ethan Brown,ethan@outlook.com,New York,USA,Engineering,Laptop,Electronics,1,999.99,0.15,2023-02-22,,cancelled,
+1019,C006,Fatima Al-Hassan,fatima@gmail.com,Dubai,UAE,Finance,Headphones,Electronics,2,149.99,0.0,2023-03-01,2023-03-03,completed,4
+1020,C013,Mohammed Ali,moh@gmail.com,Cairo,Egypt,Sales,Notebook,Stationery,20,4.99,0.0,2023-03-03,2023-03-05,completed,3
+1021,C007,George Wu,george@gmail.com,Shanghai,China,Sales,Laptop,Electronics,3,899.99,0.2,2023-03-07,2023-03-10,completed,5
+1022,C008,Hannah Kim,hannah@naver.com,Seoul,South Korea,Marketing,Webcam,Electronics,1,59.99,0.05,2023-03-09,,pending,
+1023,C014,Nina Patel,nina@gmail.com,Mumbai,India,Engineering,Monitor,Electronics,2,399.00,0.1,2023-03-12,2023-03-15,completed,4
+1024,C002,Bob Smith,bob@yahoo.com,London,UK,HR,Notebook,Stationery,5,4.99,0.0,2023-03-14,2023-03-16,completed,3
+1025,C015,Omar Farooq,omar@gmail.com,Karachi,Pakistan,Finance,Printer,Electronics,1,349.00,0.05,2023-03-17,2023-03-21,completed,4
+1026,C010,Julia Roberts,julia@gmail.com,Los Angeles,USA,Sales,Headphones,Electronics,2,149.99,0.0,2023-03-20,2023-03-22,completed,5
+1027,C011,Kevin Osei,kevin@gmail.com,Accra,Ghana,Engineering,USB Hub,Electronics,3,29.99,0.0,2023-03-22,2023-03-24,completed,3
+1028,C012,Laura Müller,laura@web.de,Berlin,Germany,HR,Desk Lamp,Furniture,2,39.99,0.1,2023-03-25,2023-03-27,completed,4
+1029,C016,Priya Sharma,priya@gmail.com,Bangalore,India,Marketing,Laptop,Electronics,1,1099.99,0.0,2023-04-01,,cancelled,
+1030,C013,Mohammed Ali,moh@gmail.com,Cairo,Egypt,Sales,Keyboard,Electronics,4,79.99,0.05,2023-04-03,2023-04-05,completed,4
+1031,C001,Alice Johnson,alice@gmail.com,New York,USA,Sales,Headphones,Electronics,1,149.99,0.0,2023-04-07,2023-04-09,completed,5
+1032,C017,Ravi Kumar,ravi@gmail.com,Delhi,India,Engineering,Monitor,Electronics,2,399.00,0.1,2023-04-10,2023-04-13,completed,4
+1033,C014,Nina Patel,nina@gmail.com,Mumbai,India,Engineering,Webcam,Electronics,1,59.99,0.0,2023-04-12,2023-04-14,completed,3
+1034,C003,Carlos Diaz,carlos@gmail.com,Madrid,Spain,Engineering,Laptop,Electronics,1,999.99,0.15,2023-04-15,2023-04-19,completed,5
+1035,C018,Sara Johansson,sara@gmail.com,Stockholm,Sweden,HR,Office Chair,Furniture,3,189.00,0.0,2023-04-17,2023-04-22,completed,4
+1036,C005,Ethan Brown,ethan@outlook.com,New York,USA,Engineering,Keyboard,Electronics,2,79.99,0.05,2023-04-20,2023-04-22,completed,4
+1037,C019,Tom Williams,tom@gmail.com,Sydney,Australia,Finance,Printer,Electronics,2,349.00,0.1,2023-04-22,,pending,
+1038,C006,Fatima Al-Hassan,fatima@gmail.com,Dubai,UAE,Finance,Monitor,Electronics,1,399.00,0.0,2023-04-25,2023-04-28,completed,5
+1039,C020,Uma Thurston,uma@gmail.com,Toronto,Canada,Marketing,Notebook,Stationery,15,4.99,0.05,2023-05-01,2023-05-03,completed,3
+1040,C007,George Wu,george@gmail.com,Shanghai,China,Sales,Webcam,Electronics,2,59.99,0.0,2023-05-05,2023-05-07,completed,4
+1041,C008,Hannah Kim,hannah@naver.com,Seoul,South Korea,Marketing,Headphones,Electronics,3,149.99,0.1,2023-05-08,2023-05-10,completed,5
+1042,C009,Ivan Petrov,ivan@mail.ru,Moscow,Russia,Finance,Laptop,Electronics,1,899.99,0.0,2023-05-10,,cancelled,
+1043,C010,Julia Roberts,julia@gmail.com,Los Angeles,USA,Sales,Desk Lamp,Furniture,2,39.99,0.05,2023-05-13,2023-05-15,completed,4
+1044,C015,Omar Farooq,omar@gmail.com,Karachi,Pakistan,Finance,USB Hub,Electronics,4,29.99,0.0,2023-05-16,2023-05-18,completed,3
+1045,C016,Priya Sharma,priya@gmail.com,Bangalore,India,Marketing,Monitor,Electronics,1,399.00,0.1,2023-05-19,2023-05-22,completed,4
+1046,C002,Bob Smith,bob@yahoo.com,London,UK,HR,Laptop,Electronics,1,999.99,0.2,2023-05-22,2023-05-26,completed,5
+1047,C017,Ravi Kumar,ravi@gmail.com,Delhi,India,Engineering,Headphones,Electronics,2,149.99,0.0,2023-05-24,,pending,
+1048,C018,Sara Johansson,sara@gmail.com,Stockholm,Sweden,HR,Keyboard,Electronics,1,79.99,0.05,2023-05-27,2023-05-29,completed,4
+1049,C019,Tom Williams,tom@gmail.com,Sydney,Australia,Finance,Webcam,Electronics,3,59.99,0.0,2023-06-01,2023-06-03,completed,3
+1050,C020,Uma Thurston,uma@gmail.com,Toronto,Canada,Marketing,Standing Desk,Furniture,1,599.00,0.1,2023-06-05,2023-06-10,completed,5
+1050,C020,Uma Thurston,uma@gmail.com,Toronto,Canada,Marketing,Standing Desk,Furniture,1,599.00,0.1,2023-06-05,2023-06-10,completed,5
+1051,C001,Alice Johnson,alice@gmail.com,New York,USA,Sales,Printer,Electronics,1,349.00,0.0,2023-06-08,2023-06-11,completed,4
+1052,C013,Mohammed Ali,moh@gmail.com,Cairo,Egypt,Sales,Monitor,Electronics,2,399.00,0.05,2023-06-10,2023-06-13,completed,4
+1053,C004,Diana Lee,diana@gmail.com,Paris,France,Marketing,Laptop,Electronics,1,1099.99,0.1,2023-06-12,,cancelled,
+1054,C011,Kevin Osei,kevin@gmail.com,Accra,Ghana,Engineering,Webcam,Electronics,2,59.99,0.0,2023-06-15,2023-06-17,completed,3
+1055,C012,Laura Müller,laura@web.de,Berlin,Germany,HR,Headphones,Electronics,1,149.99,0.05,2023-06-18,2023-06-20,completed,5
+1056,C003,Carlos Diaz,carlos@gmail.com,Madrid,Spain,Engineering,Standing Desk,Furniture,1,599.00,0.0,2023-06-21,2023-06-26,completed,4
+1057,C014,Nina Patel,nina@gmail.com,Mumbai,India,Engineering,Keyboard,Electronics,3,79.99,0.1,2023-06-23,2023-06-25,completed,4
+1058,C005,Ethan Brown,ethan@outlook.com,New York,USA,Engineering,Notebook,Stationery,8,4.99,0.0,2023-06-26,2023-06-28,completed,3
+1059,C006,Fatima Al-Hassan,fatima@gmail.com,Dubai,UAE,Finance,USB Hub,Electronics,5,29.99,0.05,2023-06-28,,pending,
+1060,C007,George Wu,george@gmail.com,Shanghai,China,Sales,Printer,Electronics,1,349.00,0.0,2023-07-02,2023-07-05,completed,4
