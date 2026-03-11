@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Terminal, Database, Code, Zap, Menu, X, Home, ChevronRight, GraduationCap, Github, Sun, Moon } from "lucide-react";
-import { useState } from "react";
+import { BookOpen, Terminal, Database, Code, Zap, Menu, X, Home, ChevronRight, Github, Sun, Moon, Wand2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
 
 const navGroups = [
@@ -11,7 +11,7 @@ const navGroups = [
         label: "Reference",
         items: [
             { name: "Home", href: "/", icon: Home },
-            { name: "DE Documentation", href: "/docs", icon: GraduationCap },
+            { name: "Docs Hub", href: "/docs", icon: BookOpen },
             { name: "Commands", href: "/commands", icon: Terminal },
             { name: "Pandas Cheatsheet", href: "/pandas", icon: Database },
         ],
@@ -25,12 +25,30 @@ const navGroups = [
             { name: "PySpark", href: "/exercises/spark", icon: Zap },
         ],
     },
+    {
+        label: "Creator Tools",
+        items: [
+            { name: "Creator Studio", href: "/wizard", icon: Wand2 },
+        ],
+    },
 ];
 
 export default function Sidebar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const { theme, toggleTheme } = useTheme();
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
 
     const SidebarContent = () => (
         <div className="flex flex-col h-full overflow-hidden">
@@ -118,7 +136,7 @@ export default function Sidebar() {
                     )}
                 </button>
                 <p className="text-[11px] text-zinc-600 leading-relaxed">
-                    Data Engineering knowledge base
+                    DE &amp; ML knowledge base
                 </p>
             </div>
         </div>

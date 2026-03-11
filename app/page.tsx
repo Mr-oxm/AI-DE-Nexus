@@ -1,16 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, Terminal, Database, Code, Zap, ArrowUpRight, GraduationCap, Github } from "lucide-react";
+import { BookOpen, Terminal, Database, Code, Zap, ArrowUpRight, GraduationCap, Github, Brain } from "lucide-react";
 
 const tools = [
   {
     title: "DE Documentation",
     description: "Comprehensive docs on SQL, Data Modeling, Spark, Orchestration, Pipelines, File Formats, and Streaming.",
     icon: GraduationCap,
-    href: "/docs",
+    href: "/docs/de",
     label: "Read docs",
     accent: "#3b82f6",
+  },
+  {
+    title: "ML Documentation",
+    description: "End-to-end Machine Learning knowledge base covering math prerequisites, classical algorithms, and deep learning.",
+    icon: Brain,
+    href: "/docs/ml",
+    label: "Read ML docs",
+    accent: "#a855f7", // purple
   },
   {
     title: "DE Commands Cheatsheet",
