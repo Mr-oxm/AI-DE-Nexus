@@ -4,6 +4,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { Pencil } from 'lucide-react';
 
 export type DocBlock =
     | { type: "h2"; text: string }
@@ -21,6 +22,12 @@ interface DocSectionProps {
     subtitle?: string;
     accent: string;
     blocks: DocBlock[];
+    breadcrumbHubLabel?: string;
+    breadcrumbHubHref?: string;
+    authorName?: string;
+    authorId?: string;
+    contributors?: { id: string; name: string }[];
+    editHref?: string;
 }
 
 const calloutStyles = {
@@ -47,11 +54,18 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 // ── Breadcrumbs ──────────────────────────────────────────────────────────────
-function Breadcrumbs({ title }: { title: string }) {
-    const pathname = usePathname(); // e.g. /docs/ml/neural-networks
-    const parts = pathname.split('/').filter(Boolean); // ['docs', 'ml', 'neural-networks']
+function Breadcrumbs({
+    title,
+    hubLabel,
+    hubHref,
+}: {
+    title: string;
+    hubLabel?: string;
+    hubHref?: string;
+}) {
+    const pathname = usePathname();
+    const parts = pathname.split('/').filter(Boolean);
 
-    // Build crumb list: Home > Docs > ML > <title>
     type Crumb = { label: string; href?: string };
     const crumbs: Crumb[] = [];
 
@@ -61,11 +75,10 @@ function Breadcrumbs({ title }: { title: string }) {
     if (parts.length >= 2) {
         const cat = parts[1];
         crumbs.push({
-            label: CATEGORY_LABELS[cat] ?? cat.toUpperCase(),
-            href: `/${parts[0]}/${cat}`,
+            label: hubLabel ?? CATEGORY_LABELS[cat] ?? cat,
+            href: hubHref ?? `/${parts[0]}/${cat}`,
         });
     }
-    // Current page — no href
     crumbs.push({ label: title });
 
     return (
@@ -337,7 +350,7 @@ function ScrollToTop({ accent }: { accent: string }) {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function DocSection({ title, subtitle, accent, blocks }: DocSectionProps) {
+export function DocSection({ title, subtitle, accent, blocks, breadcrumbHubLabel, breadcrumbHubHref, authorName, authorId, contributors = [], editHref }: DocSectionProps) {
     // Build ToC entries from h2/h3 blocks
     const tocEntries: TocEntry[] = blocks
         .filter((b) => b.type === 'h2' || b.type === 'h3')
@@ -352,10 +365,52 @@ export function DocSection({ title, subtitle, accent, blocks }: DocSectionProps)
 
             {/* Page Header */}
             <div className="mb-8 pb-6 border-b border-zinc-800">
-                <h1 className="text-2xl font-bold text-zinc-50 tracking-tight mb-2">{title}</h1>
+                <div className="flex items-start justify-between gap-4">
+                    <h1 className="text-2xl font-bold text-zinc-50 tracking-tight mb-2 flex-1 min-w-0">{title}</h1>
+                    {editHref && (
+                        <Link
+                            href={editHref}
+                            className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-zinc-200 text-xs font-medium transition-colors border border-zinc-700/50"
+                        >
+                            <Pencil size={12} /> Edit
+                        </Link>
+                    )}
+                </div>
                 {/* Breadcrumbs */}
-                <Breadcrumbs title={title} />
-                {subtitle && <p className="text-sm text-zinc-500 leading-relaxed">{subtitle}</p>}
+                <Breadcrumbs title={title} hubLabel={breadcrumbHubLabel} hubHref={breadcrumbHubHref} />
+                {subtitle && (
+                    <p className="text-sm text-zinc-500 leading-relaxed mt-2">{subtitle}</p>
+                )}
+                {(authorName || contributors?.length) && (
+                    <p className="text-xs text-zinc-600 mt-2">
+                        {authorName && (
+                            <>
+                                by{" "}
+                                {authorId ? (
+                                    <Link href={`/profile/${authorId}`} className="text-zinc-500 hover:text-zinc-300 transition-colors underline underline-offset-2">
+                                        {authorName}
+                                    </Link>
+                                ) : (
+                                    <span className="text-zinc-500">{authorName}</span>
+                                )}
+                            </>
+                        )}
+                        {contributors && contributors.length > 0 && (
+                            <>
+                                {authorName && " · "}
+                                contributions from{" "}
+                                {contributors.map((c, i) => (
+                                    <span key={c.id}>
+                                        {i > 0 && ", "}
+                                        <Link href={`/profile/${c.id}`} className="text-zinc-500 hover:text-zinc-300 transition-colors underline underline-offset-2">
+                                            {c.name || "Unknown"}
+                                        </Link>
+                                    </span>
+                                ))}
+                            </>
+                        )}
+                    </p>
+                )}
             </div>
 
             {/* Table of Contents */}

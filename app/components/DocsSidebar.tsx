@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BookOpen } from "lucide-react";
 
 export interface DocsSidebarGroup {
     title?: string;
     items: {
         title: string;
-        slug: string;
-        icon: any;
+        slug?: string;
+        id?: string;
+        icon?: string; // Not used — icons can't be passed from Server to Client
         color: string;
     }[];
 }
@@ -17,10 +19,12 @@ interface DocsSidebarProps {
     basePath: string; // The base path like "/docs/de" or "/docs/ml"
     title: string;
     groups: DocsSidebarGroup[];
+    showOverview?: boolean; // Add Overview link to hub index
 }
 
-export function DocsSidebar({ basePath, title, groups }: DocsSidebarProps) {
+export function DocsSidebar({ basePath, title, groups, showOverview = true }: DocsSidebarProps) {
     const pathname = usePathname();
+    const isOverview = pathname === basePath;
 
     return (
         <aside className="hidden lg:flex flex-col w-56 shrink-0 border-r border-zinc-800/60 sticky top-0 h-screen overflow-y-auto">
@@ -29,6 +33,21 @@ export function DocsSidebar({ basePath, title, groups }: DocsSidebarProps) {
                 <p className="text-sm font-semibold text-zinc-200 mt-1">{title}</p>
             </div>
             <nav className="px-3 py-4 flex-1">
+                {showOverview && (
+                    <>
+                        <Link
+                            href={basePath}
+                            className={`
+                                flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-medium
+                                transition-all duration-150
+                                ${isOverview ? "bg-zinc-800 text-zinc-100" : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900"}
+                            `}
+                        >
+                            Overview
+                        </Link>
+                        <div className="border-t border-zinc-800/40 my-3 mx-3" />
+                    </>
+                )}
                 {groups.map((group, groupIdx) => (
                     <div key={groupIdx} className={groupIdx > 0 ? "mt-4" : ""}>
                         {group.title && (
@@ -38,12 +57,12 @@ export function DocsSidebar({ basePath, title, groups }: DocsSidebarProps) {
                         )}
                         <div className="space-y-0.5">
                             {group.items.map((sec) => {
-                                const href = `${basePath}/${sec.slug}`;
+                                const href = `${basePath}/${sec.id || sec.slug}`;
                                 const isActive = pathname === href;
-                                const Icon = sec.icon;
+                                const Icon = BookOpen; // Default icon — can't pass components from Server
                                 return (
                                     <Link
-                                        key={sec.slug}
+                                        key={sec.id || sec.slug}
                                         href={href}
                                         className={`
                                             flex items-center gap-2.5 px-3 py-2 rounded-md text-xs font-medium

@@ -5,7 +5,8 @@ export interface DocsHomeGroup {
     title?: string;
     items: {
         title: string;
-        slug: string;
+        slug?: string;
+        id?: string;
         icon: any;
         color: string;
         desc: string;
@@ -17,15 +18,21 @@ interface DocsHomeProps {
     description: string;
     basePath: string; // e.g. "/docs/de"
     groups: DocsHomeGroup[];
+    headerSlot?: React.ReactNode;
 }
 
-export function DocsHome({ title, description, basePath, groups }: DocsHomeProps) {
+export function DocsHome({ title, description, basePath, groups, headerSlot }: DocsHomeProps) {
     return (
         <div className="px-6 md:px-10 py-12 max-w-4xl animate-in fade-in slide-in-from-bottom-2 duration-400">
             <div className="mb-10 space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-600">Documentation</p>
-                <h1 className="text-3xl font-bold text-zinc-50 tracking-tight">{title}</h1>
-                <p className="text-sm text-zinc-500 max-w-xl leading-relaxed">{description}</p>
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-zinc-600">Documentation</p>
+                        <h1 className="text-3xl font-bold text-zinc-50 tracking-tight">{title}</h1>
+                        <p className="text-sm text-zinc-500 max-w-xl leading-relaxed">{description}</p>
+                    </div>
+                    {headerSlot && <div className="flex items-center gap-2 shrink-0">{headerSlot}</div>}
+                </div>
             </div>
 
             <div className="border-t border-zinc-800 mb-8" />
@@ -43,8 +50,8 @@ export function DocsHome({ title, description, basePath, groups }: DocsHomeProps
                             const Icon = sec.icon;
                             return (
                                 <Link
-                                    key={sec.slug}
-                                    href={`${basePath}/${sec.slug}`}
+                                    key={sec.id || sec.slug}
+                                    href={`${basePath}/${sec.id || sec.slug}`}
                                     className="group flex flex-col p-5 bg-zinc-900/50 rounded-xl border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-200 relative overflow-hidden"
                                 >
                                     {/* Top accent line on hover */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Sidebar from "./components/Sidebar";
+import SessionProvider from "./providers/SessionProvider";
 
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
@@ -31,11 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <ThemeProvider>
-
+          <SessionProvider>
           <Sidebar />
           <main className="md:pl-56 min-h-screen">
             {children}
           </main>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

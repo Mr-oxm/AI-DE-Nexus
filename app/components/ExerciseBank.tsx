@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Search, CheckCircle2, Circle, ChevronDown, ChevronUp, SlidersHorizontal } from "lucide-react";
+import Link from "next/link";
+import { Search, CheckCircle2, Circle, ChevronDown, ChevronUp, SlidersHorizontal, Pencil } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -11,6 +12,7 @@ export type Exercise = {
     q: string;
     a: string;
     lang?: string;
+    editHref?: string;
 };
 
 interface ExerciseBankProps {
@@ -19,9 +21,11 @@ interface ExerciseBankProps {
     tagColors: Record<string, string>;
     exercises: Exercise[];
     headerSlot?: React.ReactNode;
+    authorName?: string;
+    authorId?: string;
 }
 
-export default function ExerciseBank({ title, description, tagColors, exercises, headerSlot }: ExerciseBankProps) {
+export default function ExerciseBank({ title, description, tagColors, exercises, headerSlot, authorName, authorId }: ExerciseBankProps) {
     const [activeTag, setActiveTag] = useState<string>("ALL");
     const [searchQuery, setSearchQuery] = useState("");
     const [completed, setCompleted] = useState<Record<number, boolean>>({});
@@ -58,8 +62,24 @@ export default function ExerciseBank({ title, description, tagColors, exercises,
                     <h1 className="text-3xl font-bold text-zinc-50 tracking-tight">
                         {title}
                     </h1>
-                    {description && (
-                        <p className="text-sm text-zinc-500 leading-relaxed max-w-xl">{description}</p>
+                    {(description || authorName) && (
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                            {description && (
+                                <p className="text-sm text-zinc-500 leading-relaxed max-w-xl">{description}</p>
+                            )}
+                            {authorName && (
+                                <p className="text-xs text-zinc-600">
+                                    by{" "}
+                                    {authorId ? (
+                                        <Link href={`/profile/${authorId}`} className="text-zinc-500 hover:text-zinc-300 transition-colors underline underline-offset-2">
+                                            {authorName}
+                                        </Link>
+                                    ) : (
+                                        <span className="text-zinc-500">{authorName}</span>
+                                    )}
+                                </p>
+                            )}
+                        </div>
                     )}
                 </div>
 
@@ -221,6 +241,16 @@ export default function ExerciseBank({ title, description, tagColors, exercises,
 
                                     {/* Actions */}
                                     <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                                        {ex.editHref && (
+                                            <Link
+                                                href={ex.editHref}
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="p-1.5 rounded-md text-zinc-600 hover:text-zinc-300 hover:bg-zinc-800 transition-all"
+                                                title="Edit"
+                                            >
+                                                <Pencil size={15} />
+                                            </Link>
+                                        )}
                                         {/* Complete toggle */}
                                         <button
                                             onClick={(e) => {
